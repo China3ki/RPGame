@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Gameplay\Shop\" />
+    <Folder Include="Components\Gui\" />
+    <Folder Include="States\" />
+  </ItemGroup>
+
 </Project>

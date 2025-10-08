@@ -1,0 +1,5 @@
+﻿enum AttackType
+{
+    HardAttack,
+    FastAttack
+}
