@@ -14,9 +14,10 @@ namespace RPGGame.Gameplay.Characters
         public Armor ?Leggings { get; private set; }
         public Armor ?Boots { get; private set; }
         public int MaxWeight { get; private set; } = maxWeight;
-        public bool AddItem(Item item, int weight)
+        public int Weight { get; private set; } = 40;
+        public bool AddItem(Item item)
         {
-            if (weight + item.Weight > MaxWeight) return false;
+            if (Weight + item.Weight > MaxWeight) return false;
             Items.Add(item);
             return true;
         }
@@ -90,33 +91,9 @@ namespace RPGGame.Gameplay.Characters
         }
         public bool DeEquip(InventorySlots slot)
         {
-            switch (slot)
-            {
-                case InventorySlots.PrimaryWeapon:
-                    if (PrimaryWeapon != null) PrimaryWeapon.HandleEquip();
-                    PrimaryWeapon = null;
-                    break;
-                case InventorySlots.SecondaryWeapon:
-                    if (SecondaryWeapon != null) SecondaryWeapon.HandleEquip();
-                    SecondaryWeapon = null;
-                    break;
-                case InventorySlots.Helmet:
-                    if (Helmet != null) Helmet.HandleEquip();
-                    Helmet = null;
-                    break;
-                case InventorySlots.Chestplate:
-                    if (Chestplate != null) Chestplate.HandleEquip();
-                    Chestplate = null;
-                    break;
-                case InventorySlots.Leggings:
-                    if (Leggings != null) Leggings.HandleEquip();
-                    Leggings = null;
-                    break;
-                case InventorySlots.Boots:
-                    if (Boots != null) Boots.HandleEquip();
-                    Boots = null;
-                    break;
-            }
+            Dictionary<InventorySlots, IEquip?> slots = new() { { InventorySlots.PrimaryWeapon, PrimaryWeapon }, { InventorySlots.SecondaryWeapon, SecondaryWeapon }, { InventorySlots.Helmet, Helmet }, { InventorySlots.Chestplate, Chestplate }, { InventorySlots.Leggings, Leggings }, { InventorySlots.Boots, Boots } };
+            if (slots[slot] != null) slots[slot]?.HandleEquip();
+            slots[slot] = null;
             return true;
         }
         public List<T> GetItemsOfType<T>() where T: Item => Items.OfType<T>().ToList();

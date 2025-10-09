@@ -5,6 +5,9 @@
     FireResistance,
     ColdResistance,
     DarkResistance,
+    FireSkill,
+    ColdSkill,
+    DarkSkill,
     SwordSkill,
     WandSkill,
     BowSkill

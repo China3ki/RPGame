@@ -1,6 +1,6 @@
 ﻿namespace RPGGame.Gameplay.Characters
 {
-    internal class Skills(int strength, int luck, int fireResistance, int coldResistance, int darkResistance, int swordSkill, int wandSkill, int bowSkill)
+    internal class Skills(int strength, int luck, int fireResistance, int coldResistance, int darkResistance, int fireSkill, int coldSkill, int darkSkill, int swordSkill, int wandSkill, int bowSkill)
     {
         public int FreeSkillPoints { get; private set; } = 0;
         public int Strength { get; private set; } = strength;
@@ -8,6 +8,9 @@
         public int FireResistance { get; private set; } = fireResistance;
         public int ColdResistance { get; private set; } = coldResistance;
         public int DarkResistance { get; private set; } = darkResistance;
+        public int FireSkill { get; private set; } = fireSkill;
+        public int ColdSkill { get; private set; } = coldSkill;
+        public int DarkSkill { get; private set; } = darkSkill;
         public int SwordSkill { get; private set; } = swordSkill;
         public int WandSkill { get; private set; } = wandSkill;
         public int BowSkill { get; private set; } = bowSkill;
@@ -42,6 +45,9 @@
                 case SkillsType.FireResistance: FireResistance += pointsToAssign; break;
                 case SkillsType.ColdResistance: ColdResistance += pointsToAssign; break;
                 case SkillsType.DarkResistance: DarkResistance += pointsToAssign; break;
+                case SkillsType.FireSkill: FireSkill += pointsToAssign; break;
+                case SkillsType.ColdSkill: ColdSkill += pointsToAssign; break;
+                case SkillsType.DarkSkill: DarkSkill += pointsToAssign; break;
                 case SkillsType.SwordSkill: SwordSkill += pointsToAssign; break;
                 case SkillsType.WandSkill: WandSkill += pointsToAssign; break;
                 case SkillsType.BowSkill: BowSkill += pointsToAssign; break;

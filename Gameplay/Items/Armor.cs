@@ -1,6 +1,8 @@
-﻿namespace RPGGame.Gameplay.Items
+﻿using RPGGame.Components.Interfaces;
+
+namespace RPGGame.Gameplay.Items
 {
-    internal class Armor(string name, string description, int weight, int price, int condition, int protection, ItemType itemType, Rarity rarity, ArmorType armorType) : Item(name, description, weight, price, condition, rarity, itemType)
+    internal class Armor(string name, string description, int weight, int price, int condition, int protection, ItemType itemType, Rarity rarity, ArmorType armorType) : Item(name, description, weight, price, condition, rarity, itemType), IEquip
     {
         public ArmorType ArmorType = armorType;
         public bool Equipped { get; private set; } = false; 

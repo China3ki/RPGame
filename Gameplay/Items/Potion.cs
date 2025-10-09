@@ -12,5 +12,10 @@ namespace RPGGame.Gameplay.Items
             if (Condition - _rottingSpeed <= 0) Condition = 0;
             else Condition -= _rottingSpeed;
         }
+        public bool GetPotionValue()
+        {
+            if (Condition >= 30) return true;
+            else return false;
+        }
     }
 }
