@@ -1,13 +1,15 @@
-﻿using RPGGame.Gameplay.Characters;
-using RPGGame.Gameplay.Items;
-
+﻿using RPGGame.Components;
+using RPGGame.Gameplay.Characters;
+using RPGGame.Gameplay.Characters.Entities;
 namespace RPGGame
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            StateManager stateManager = new();
+            stateManager.RunApp();
+
         }
     }
 }

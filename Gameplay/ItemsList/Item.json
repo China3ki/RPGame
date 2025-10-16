@@ -1,0 +1,146 @@
+[
+  {
+    "Name": "Złamana włócznia",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Item",
+    "Price": 1,
+    "ItemId": 1
+  },
+  {
+    "Name": "Kamień teleportacji",
+    "Weight": 1,
+    "Durability": 50,
+    "Rarity": "rare",
+    "ItemCategory": "Item",
+    "Price": 20,
+    "ItemId": 2
+  },
+  {
+    "Name": "Złamany amulet ochrony",
+    "Weight": 1,
+    "Durability": 25,
+    "Rarity": "uncommon",
+    "ItemCategory": "Item",
+    "Price": 35,
+    "ItemId": 3
+  },
+  {
+    "Name": "Skrzydło nietoperza",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "common",
+    "ItemCategory": "Item",
+    "Price": 5,
+    "ItemId": 4
+  },
+  {
+    "Name": "Szmaragdowy odłamek",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "rare",
+    "ItemCategory": "Item",
+    "Price": 31,
+    "ItemId": 5
+  },
+  {
+    "Name": "Księga zapomnianych run",
+    "Weight": 3,
+    "Durability": 80,
+    "Rarity": "epic",
+    "ItemCategory": "Item",
+    "Price": 25,
+    "ItemId": 6
+  },
+  {
+    "Name": "Ząb trolla",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Item",
+    "Price": 15,
+    "ItemId": 7
+  },
+  {
+    "Name": "Kryształ duszy",
+    "Weight": 1,
+    "Durability": 90,
+    "Rarity": "rare",
+    "ItemCategory": "Item",
+    "Price": 220,
+    "ItemId": 8
+  },
+  {
+    "Name": "Zardzewiały klucz",
+    "Weight": 1,
+    "Durability": 40,
+    "Rarity": "common",
+    "ItemCategory": "Item",
+    "Price": 2,
+    "ItemId": 9
+  },
+  {
+    "Name": "Czarna perła",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "epic",
+    "ItemCategory": "Item",
+    "Price": 30,
+    "ItemId": 10
+  },
+  {
+    "Name": "Klejnot łowcy smoków",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "legendary",
+    "ItemCategory": "Item",
+    "Price": 40,
+    "ItemId": 11
+  },
+  {
+    "Name": "Pióro feniksa",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "legendary",
+    "ItemCategory": "Item",
+    "Price": 50,
+    "ItemId": 12
+  },
+  {
+    "Name": "Fragment starożytnej mapy",
+    "Weight": 1,
+    "Durability": 60,
+    "Rarity": "uncommon",
+    "ItemCategory": "Item",
+    "Price": 25,
+    "ItemId": 13
+  },
+  {
+    "Name": "Popiół demona",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "rare",
+    "ItemCategory": "Item",
+    "Price": 15,
+    "ItemId": 14
+  },
+  {
+    "Name": "Srebrny medalion łowcy",
+    "Weight": 1,
+    "Durability": 80,
+    "Rarity": "rare",
+    "ItemCategory": "Item",
+    "Price": 20,
+    "ItemId": 15
+  },
+  {
+    "Name": "Zamrożone serce wilka",
+    "Weight": 2,
+    "Durability": 100,
+    "Rarity": "epic",
+    "ItemCategory": "Item",
+    "Price": 25,
+    "ItemId": 16
+  }
+]

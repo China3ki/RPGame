@@ -2,5 +2,5 @@
 {
     Sword,
     Wand,
-    Bow,
+    Bow
 }

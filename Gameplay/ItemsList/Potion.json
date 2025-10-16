@@ -1,0 +1,122 @@
+[
+  {
+    "Name": "Mikstura leczenia",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Potion",
+    "Price": 20,
+    "ItemId": 1,
+    "Value": 5,
+    "Duration": 2,
+    "EffectType": "HPRegeneration"
+  },
+  {
+    "Name": "Mikstura oczyszczenia",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "common",
+    "ItemCategory": "Potion",
+    "Price": 15,
+    "ItemId": 2,
+    "Value": 3,
+    "Duration": 1,
+    "EffectType": "ClearNegativeEffects"
+  },
+  {
+    "Name": "Mikstura ognistej ochrony",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "rare",
+    "ItemCategory": "Potion",
+    "Price": 30,
+    "ItemId": 3,
+    "Value": 6,
+    "Duration": 3,
+    "EffectType": "FireProtection"
+  },
+  {
+    "Name": "Mikstura mroźnej ochrony",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "rare",
+    "ItemCategory": "Potion",
+    "Price": 30,
+    "ItemId": 4,
+    "Value": 6,
+    "Duration": 3,
+    "EffectType": "ColdProtection"
+  },
+  {
+    "Name": "Mikstura cienia",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "epic",
+    "ItemCategory": "Potion",
+    "Price": 50,
+    "ItemId": 5,
+    "Value": 10,
+    "Duration": 4,
+    "EffectType": "DarkProtection"
+  },
+  {
+    "Name": "Mikstura lecznicza +",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "rare",
+    "ItemCategory": "Potion",
+    "Price": 25,
+    "ItemId": 6,
+    "Value": 8,
+    "Duration": 3,
+    "EffectType": "HPRegeneration"
+  },
+  {
+    "Name": "Mikstura oczyszczenia +",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Potion",
+    "Price": 20,
+    "ItemId": 7,
+    "Value": 5,
+    "Duration": 2,
+    "EffectType": "ClearNegativeEffects"
+  },
+  {
+    "Name": "Mikstura ognista +",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "epic",
+    "ItemCategory": "Potion",
+    "Price": 60,
+    "ItemId": 8,
+    "Value": 12,
+    "Duration": 5,
+    "EffectType": "FireProtection"
+  },
+  {
+    "Name": "Mikstura mroźna +",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "epic",
+    "ItemCategory": "Potion",
+    "Price": 60,
+    "ItemId": 9,
+    "Value": 12,
+    "Duration": 5,
+    "EffectType": "ColdProtection"
+  },
+  {
+    "Name": "Mikstura cienia +",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "legendary",
+    "ItemCategory": "Potion",
+    "Price": 80,
+    "ItemId": 10,
+    "Value": 15,
+    "Duration": 6,
+    "EffectType": "DarkProtection"
+  }
+]

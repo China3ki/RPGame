@@ -1,25 +1,29 @@
 ﻿using RPGGame.Components.Interfaces;
+using System.Text.Json.Serialization;
 
 namespace RPGGame.Gameplay.Items
 {
-    internal class Armor(string name, string description, int weight, int price, int condition, int protection, ItemType itemType, Rarity rarity, ArmorType armorType) : Item(name, description, weight, price, condition, rarity, itemType), IEquip
+    internal class Armor(string name, int price, int weight, int durability, int itemId, int value, int minStrengthLevel, ArmorType armorType, Rarity rarity, ItemCategory itemCategory) : Item(name, price, weight, durability, itemId, rarity, itemCategory), IEquip
     {
-        public ArmorType ArmorType = armorType;
-        public bool Equipped { get; private set; } = false; 
-        private int _protection = protection;
+        public int Value { get; } = value;
+        public int MinStrengthLevel { get; } = minStrengthLevel;
+        public bool Equipped { get; private set; } = false;
+        public ArmorType ArmorType { get; } = armorType;
         public void HandleEquip() => Equipped = Equipped == false;
-        public void UpdateCondition(int TakenDamage, int turns)
+        public void UpdateDurability(int TakenDamage)
         {
-            Random rnd = new();
-            Condition -= turns + TakenDamage / 10 / rnd.Next(1, 10);
+            int durabilityLoss = TakenDamage / 5;
+            if (Durability - durabilityLoss <= 0) Durability = 0;
+            else Durability -= durabilityLoss;
         }
-        public int GetProtection()
+        public override int ReturnPrice()
         {
-            double multiply = 1;
-            if (Condition >= 60) multiply = 1;
-            else if (Condition < 60 && Condition >= 30) multiply = 0.6;
-            else if (Condition < 30) multiply = 0.3;
-            return Convert.ToInt32(_protection * multiply);
+            float mulitply = 1;
+            if (mulitply < 75 && mulitply >= 60) mulitply = .8f;
+            else if (mulitply < 60 && mulitply >= 45) mulitply = .6f;
+            else if (mulitply < 45 && mulitply >= 30) mulitply = .4f;
+            else mulitply = .2f;
+            return Convert.ToInt32(base.ReturnPrice() * mulitply);
         }
     }
 }

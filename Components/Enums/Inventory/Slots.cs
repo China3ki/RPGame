@@ -1,5 +1,7 @@
-﻿enum ArmorType
+﻿enum Slots
 {
+    PrimaryWeapon,
+    SecondaryWeapon,
     Helmet,
     Chestplate,
     Leggings,

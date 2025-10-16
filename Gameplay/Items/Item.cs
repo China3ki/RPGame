@@ -1,23 +1,23 @@
-﻿namespace RPGGame.Gameplay.Items
+﻿using System.Text.Json.Serialization;
+
+namespace RPGGame.Gameplay.Items
 {
-    class Item(string name, string description, int weight, int price, int condition, Rarity rarity, ItemType itemType)
+    internal class Item(string name, int price, int weight, int durability, int itemId, Rarity rarity, ItemCategory itemCategory )
     {
         public string Name { get; } = name;
-        public string Description { get; } = description;
         public int Weight { get; } = weight;
-        public int Price { get; } = price;
-        public int Condition { get; protected set; } = condition;
-        public ItemType ItemType { get; } = itemType;
+        public int Durability { get; protected set; } = durability;
         public Rarity Rarity { get; } = rarity;
-        public int GetPrice()
-        {
-            double multiply = 1;
-            if (Condition >= 85) multiply = 1;
-            else if (Condition < 85 && Condition >= 65) multiply = 0.8;
-            else if (Condition < 65 && Condition >= 45) multiply = 0.6;
-            else if (Condition < 45 && Condition >= 30) multiply = 0.5;
-            else if (Condition < 30) multiply = 0.3;
-            return Convert.ToInt32(Price * multiply);
-        }
+        public ItemCategory ItemCategory { get; } = itemCategory;
+        protected Dictionary<Rarity, float> _priceMultiply = new() { { Rarity.Common, 1 }, { Rarity.Uncommon, 1.5f }, { Rarity.Rare, 2.5f }, { Rarity.Epic, 3.5f }, { Rarity.Legendary, 4f } };
+        protected int _price = price;
+        protected int _itemId = itemId;
+        /// <summary>
+        /// Calculates and returns the price of the item based on its rarity and a predefined multiplier.
+        /// </summary>
+        /// <remarks>The price is determined by multiplying the base price by a rarity-specific
+        /// multiplier.</remarks>
+        /// <returns>The calculated price as an integer.</returns>
+        public virtual int ReturnPrice() => Convert.ToInt32(_price * _priceMultiply[Rarity]);
     }
 }

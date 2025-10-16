@@ -1,14 +1,13 @@
-﻿enum SkillsType
+﻿enum SkillsCategory
 {
     Strength,
     Luck,
-    FireResistance,
-    ColdResistance,
-    DarkResistance,
+    Reflex,
+    Magic,
     FireSkill,
     ColdSkill,
     DarkSkill,
     SwordSkill,
     WandSkill,
-    BowSkill
+    BowSkill,
 }

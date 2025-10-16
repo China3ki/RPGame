@@ -1,0 +1,152 @@
+﻿[
+  {
+    "Name": "Jabłko",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Food",
+    "Price": 5,
+    "ItemId": 1,
+    "Value": 5
+  },
+  {
+    "Name": "Chleb wiejski",
+    "Weight": 2,
+    "Durability": 100,
+    "Rarity": "common",
+    "ItemCategory": "Food",
+    "Price": 3,
+    "ItemId": 2,
+    "Value": 4
+  },
+  {
+    "Name": "Mięso suszone",
+    "Weight": 3,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Food",
+    "Price": 6,
+    "ItemId": 3,
+    "Value": 6
+  },
+  {
+    "Name": "Ser dojrzewający",
+    "Weight": 2,
+    "Durability": 100,
+    "Rarity": "rare",
+    "ItemCategory": "Food",
+    "Price": 8,
+    "ItemId": 4,
+    "Value": 7
+  },
+  {
+    "Name": "Gruszka",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "common",
+    "ItemCategory": "Food",
+    "Price": 4,
+    "ItemId": 5,
+    "Value": 4
+  },
+  {
+    "Name": "Jagody",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Food",
+    "Price": 5,
+    "ItemId": 6,
+    "Value": 5
+  },
+  {
+    "Name": "Miód w słoiku",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "rare",
+    "ItemCategory": "Food",
+    "Price": 10,
+    "ItemId": 7,
+    "Value": 8
+  },
+  {
+    "Name": "Marchewka",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "common",
+    "ItemCategory": "Food",
+    "Price": 3,
+    "ItemId": 8,
+    "Value": 3
+  },
+  {
+    "Name": "Ziemniak",
+    "Weight": 2,
+    "Durability": 100,
+    "Rarity": "common",
+    "ItemCategory": "Food",
+    "Price": 3,
+    "ItemId": 9,
+    "Value": 3
+  },
+  {
+    "Name": "Grzyby leśne",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Food",
+    "Price": 6,
+    "ItemId": 10,
+    "Value": 5
+  },
+  {
+    "Name": "Pomarańcza",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Food",
+    "Price": 5,
+    "ItemId": 11,
+    "Value": 5
+  },
+  {
+    "Name": "Orzechy",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "common",
+    "ItemCategory": "Food",
+    "Price": 4,
+    "ItemId": 12,
+    "Value": 4
+  },
+  {
+    "Name": "Suszone owoce",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "rare",
+    "ItemCategory": "Food",
+    "Price": 8,
+    "ItemId": 13,
+    "Value": 6
+  },
+  {
+    "Name": "Jabłko zielone",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "common",
+    "ItemCategory": "Food",
+    "Price": 4,
+    "ItemId": 14,
+    "Value": 4
+  },
+  {
+    "Name": "Gruszka słodka",
+    "Weight": 1,
+    "Durability": 100,
+    "Rarity": "uncommon",
+    "ItemCategory": "Food",
+    "Price": 5,
+    "ItemId": 15,
+    "Value": 5
+  }
+]

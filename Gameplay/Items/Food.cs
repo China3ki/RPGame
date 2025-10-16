@@ -1,25 +1,27 @@
-﻿using RPGGame.Components.Interfaces;
-
-namespace RPGGame.Gameplay.Items
+﻿namespace RPGGame.Gameplay.Items
 {
-    internal class Food(string name, string description, int weight, int price, int condition, int foodValue, int rottingSpeed, Rarity rarity, ItemType itemType) : Item(name, description, weight, price, condition, rarity, itemType), IUpdate
+    internal class Food(string name, int price, int weight, int durability, int itemId, int value, Rarity rarity, ItemCategory itemCategory) : Item(name, price, weight, durability, itemId, rarity, itemCategory)
     {
-        public int FoodValue { get; } = foodValue;
-        private int _rottingSpeed = rottingSpeed;
-        public void UpdateCondition()
+        public int Value { get; } = value;      
+        /// <summary>
+        /// Updates the durability of the item by reducing it at a fixed rate.
+        /// </summary>
+        /// <remarks>If the durability falls below or equals zero after the reduction, it is set to zero.
+        /// This method ensures that the durability does not become negative.</remarks>
+        public void UpdateDurability()
         {
-            if (Condition - _rottingSpeed <= 0) Condition = 0;
-            else Condition -= _rottingSpeed;
+            int rottingSpeed = 3;
+            if (Durability - rottingSpeed <= 0) Durability = 0;
+            else Durability -= rottingSpeed;
         }
-        public int GetFoodValue()
+        public override int ReturnPrice()
         {
-            float multiply = 1;
-            if (Condition >= 90) multiply = 1;
-            else if (Condition < 90 && Condition >= 70) multiply = 0.8f;
-            else if (Condition < 70 && Condition >= 50) multiply = 0.5f;
-            else if (Condition < 50 && Condition >= 30) multiply = 0.3f;
-            else if (Condition < 30) return -1;
-            return Convert.ToInt32(multiply * FoodValue);
+            float mulitply = 1;
+            if (mulitply < 85 && mulitply >= 70) mulitply = .8f;
+            else if (mulitply < 70 && mulitply >= 50) mulitply = .6f;
+            else if (mulitply < 50 && mulitply >= 30) mulitply = .4f;
+            else mulitply = .2f;
+            return Convert.ToInt32(base.ReturnPrice() * mulitply);
         }
     }
 }

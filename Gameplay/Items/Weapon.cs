@@ -2,44 +2,39 @@
 
 namespace RPGGame.Gameplay.Items
 {
-    internal class Weapon(string name, string description, int weight, int price, int condition, int fastDamage, int hardDamage, int minLevel, Rarity rarity, ItemType itemType, WeaponType weaponType, EffectType effectType) : Item(name, description, weight, price, condition, rarity, itemType), IEquip
+    class Weapon(string name, int price, int weight, int itemId, int durability, int value, int minWeaponLevel, SkillsCategory requiredSkillType, EffectType effectType, WeaponType weaponType, Rarity rarity, ItemCategory itemCategory) : Item(name, price, weight, durability, itemId, rarity, itemCategory), IEquip
     {
-        public WeaponType WeaponType { get; } = weaponType;
-        public EffectType EffectType { get; } = effectType;
-        public int MinLevel { get; } = minLevel;
+        public int Value { get; } = value;
+        public int MinWeaponLevel { get; } = minWeaponLevel;
         public bool Equipped { get; private set; } = false;
-        public int _fastDamage = fastDamage;
-        public int _hardDamage = hardDamage;
+        public SkillsCategory RequiredSkillType { get; } = requiredSkillType;
+        public EffectType EffectType { get; } = effectType;
+        public WeaponType WeaponType { get; } = weaponType;
         public void HandleEquip() => Equipped = Equipped == false;
-        /// <summary>
-        /// Updates the condition (durability) of the item over a given number of turns.
-        /// The condition decreases by the number of turns plus a random degradation value.
-        /// </summary>
-        /// <param name="turns">The number of turns that have passed since the last update.</param>
-        public void UpdateCondition(int turns)
+        public int GetDamage()
         {
-            Random rnd = new();
-            Condition -= turns + rnd.Next(1, 10);
+            float mulitply = 1;
+            if (Durability < 85 && Durability >= 70) mulitply = .9f;
+            else if (Durability < 70 && Durability >= 55) mulitply = .7f;
+            else if (Durability < 55 && Durability >= 45) mulitply = .5f;
+            else if (Durability < 45 && Durability >= 30) mulitply = .3f;
+            else mulitply = .2f;
+            return Convert.ToInt32(Value * mulitply);
         }
-
-        /// <summary>
-        /// Calculates the effective damage dealt based on the current condition of the item
-        /// and the type of attack performed.
-        /// </summary>
-        /// <param name="attackType">The type of attack (e.g. Fast or Hard).</param>
-        /// <returns>
-        /// The total damage value adjusted by the item's condition multiplier.
-        /// </returns>
-        public int ReturnDamage(AttackType attackType)
+        public void UpdateDurability(int givenDamage)
         {
-            double multiply = 1;
-            if (Condition >= 80) multiply = 1;
-            else if (Condition < 80 && Condition >= 65) multiply = 0.8;
-            else if (Condition < 65 && Condition >= 30) multiply = 0.5;
-            else if (Condition < 30) multiply = 0.3;
-            if (attackType == AttackType.FastAttack) return Convert.ToInt32(_fastDamage * multiply);
-            else return Convert.ToInt32(_hardDamage * multiply);
+            int durabilityLoss = givenDamage / 10;
+            if (Durability - durabilityLoss <= 0) Durability = 0;
+            else Durability -= durabilityLoss;
         }
-
+        public override int ReturnPrice()
+        {
+            float mulitply = 1;
+            if (Durability < 75 && Durability >= 60) mulitply = .8f;
+            else if (Durability < 60 && Durability >= 45) mulitply = .6f;
+            else if (mulitply < 45 && Durability >= 30) mulitply = .4f;
+            else mulitply = .2f;
+            return Convert.ToInt32(base.ReturnPrice() * mulitply);
+        }
     }
 }

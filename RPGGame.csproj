@@ -8,9 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Gameplay\Battle\Ai\" />
+    <Folder Include="Gameplay\Characters\Effects\" />
     <Folder Include="Gameplay\Shop\" />
-    <Folder Include="Components\Gui\" />
-    <Folder Include="States\" />
+    <Folder Include="Saves\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -1,5 +1,0 @@
-﻿enum WeaponSlots
-{
-    Primary,
-    Secondary
-}
