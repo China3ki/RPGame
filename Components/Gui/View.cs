@@ -1,4 +1,5 @@
 ﻿using RPGGame.Gameplay.Characters;
+using RPGGame.Gameplay.Items;
 
 namespace RPGGame.Components.Gui
 {
@@ -14,7 +15,7 @@ namespace RPGGame.Components.Gui
             Console.WriteLine(info);
             Console.ResetColor();
         }
-        static void RenderInfoSameLine(string info, ConsoleColor font)
+        static public void RenderInfoSameLine(string info, ConsoleColor font)
         {
             Console.ForegroundColor = font;
             Console.Write(info);
@@ -55,7 +56,59 @@ namespace RPGGame.Components.Gui
         }
         static public void DisplaySaveGames(int lp, Player player)
         {
-            Console.WriteLine($"{lp}. {player.Name} - {player.HP} - {player.Level} - {player.HP}");
+            Console.WriteLine($"{lp}. {player.Name} - {player.HP} - {player.Level} - {player.XP}");
         }
+        static public void DisplayArmor(Armor armor)
+        {
+                RenderInfo($"{armor.Name} - {armor.ArmorType} - {armor.Weight} - {armor.MinStrengthLevel} - {armor.Value} - {armor.Rarity} - {armor.ReturnPrice()}", ConsoleColor.White);
+        }
+        static public void DisplayWeaponHeaders()
+        {
+            Console.Write("| ");
+            RenderInfoSameLine("Lp", ConsoleColor.White); Console.Write(" | ");
+            RenderInfoSameLine("Nazwa", ConsoleColor.Magenta); Console.Write(" | ");
+            RenderInfoSameLine("Rodzaj broni", ConsoleColor.DarkBlue); Console.Write(" | ");
+            RenderInfoSameLine("Trwałość", ConsoleColor.DarkGreen); Console.Write(" | ");
+            RenderInfoSameLine("Waga", ConsoleColor.DarkCyan); Console.Write(" | ");
+            RenderInfoSameLine("Poziom umiejętności", ConsoleColor.DarkMagenta); Console.Write(" | ");
+            RenderInfoSameLine("Wymagana umiejętność", ConsoleColor.DarkYellow); Console.Write(" | ");
+            RenderInfoSameLine("Poziom", ConsoleColor.Blue); Console.Write(" | ");
+            RenderInfoSameLine("Rzadkość", ConsoleColor.Yellow); Console.Write(" | ");
+            RenderInfoSameLine("Cena", ConsoleColor.DarkGray); Console.Write(" |\n");
+        }
+        static public void DisplayWeapon(int lp, Weapon weapon)
+        {
+            RenderInfoSameLine($"{lp}", ConsoleColor.White); Console.Write(" | ");
+            RenderInfoSameLine(weapon.Name, ConsoleColor.Magenta); Console.Write(" | ");
+            RenderInfoSameLine($"{weapon.WeaponType}", ConsoleColor.DarkBlue); Console.Write(" | ");
+            RenderInfoSameLine($"{weapon.Durability}", ConsoleColor.DarkGreen); Console.Write(" | ");
+            RenderInfoSameLine($"{weapon.Weight}", ConsoleColor.DarkCyan); Console.Write(" | ");
+            RenderInfoSameLine($"{weapon.MinWeaponLevel}", ConsoleColor.DarkMagenta); Console.Write(" | ");
+            RenderInfoSameLine($"{weapon.RequiredSkillType}", ConsoleColor.DarkYellow); Console.Write(" | ");
+            RenderInfoSameLine($"{weapon.Rarity}", ConsoleColor.Yellow); Console.Write(" | ");
+            RenderInfoSameLine($"{weapon.Value}", ConsoleColor.Blue); Console.Write(" | ");
+            RenderInfoSameLine($"{weapon.ReturnPrice()}", ConsoleColor.DarkGray); Console.Write(" |\n");
+        }
+        static public void DisplayFoodHeaders()
+        {
+            Console.Write("| ");
+            RenderInfoSameLine("Lp", ConsoleColor.White); Console.Write(" | ");
+            RenderInfoSameLine("Nazwa", ConsoleColor.Magenta); Console.Write(" | ");
+            RenderInfoSameLine("Trwałość", ConsoleColor.DarkGreen); Console.Write(" | ");
+            RenderInfoSameLine("Waga", ConsoleColor.DarkCyan); Console.Write(" | ");
+            RenderInfoSameLine("Rzadkość", ConsoleColor.Yellow); Console.Write(" | ");
+            RenderInfoSameLine("Wartość", ConsoleColor.Blue); Console.Write(" | ");
+            RenderInfoSameLine("Cena", ConsoleColor.DarkGray); Console.Write(" |\n");
+        }
+        static public void DisplayFood(int lp, Food food)
+        {
+            RenderInfoSameLine($"{lp}", ConsoleColor.White); Console.Write(" | ");
+            RenderInfoSameLine(food.Name, ConsoleColor.Magenta); Console.Write(" | ");
+            RenderInfoSameLine($"{food.Durability}", ConsoleColor.DarkGreen); Console.Write(" | ");
+            RenderInfoSameLine($"{food.Weight}", ConsoleColor.DarkCyan); Console.Write(" | ");
+            RenderInfoSameLine($"{food.Rarity}", ConsoleColor.Yellow); Console.Write(" | ");
+            RenderInfoSameLine($"{food.Value}", ConsoleColor.Blue); Console.Write(" | ");
+            RenderInfoSameLine($"{food.ReturnPrice()}", ConsoleColor.DarkGray); Console.Write(" |\n");
+        } 
     }
 }

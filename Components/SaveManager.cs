@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RPGGame.Components.Gui;
 using RPGGame.Gameplay.Characters;
 namespace RPGGame.Components
@@ -12,7 +10,6 @@ namespace RPGGame.Components
         {
             string savePath = $"{_path}/{player.SavePath}.json";
             if (!File.Exists(savePath)) File.Create(savePath).Dispose();
-            else File.WriteAllText(savePath, string.Empty);
             var save = JsonConvert.SerializeObject(player);
             File.WriteAllText(savePath, save);
             View.RenderInfo("Gra została zapisana!", ConsoleColor.Green);

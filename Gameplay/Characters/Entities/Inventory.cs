@@ -1,5 +1,4 @@
-﻿using RPGGame.Components.Interfaces;
-using RPGGame.Gameplay.Items;
+﻿using RPGGame.Gameplay.Items;
 namespace RPGGame.Gameplay.Characters.Entities
 {
     internal class Inventory
@@ -11,10 +10,11 @@ namespace RPGGame.Gameplay.Characters.Entities
         public Armor ?Chestplate { get; private set; }
         public Armor ?Leggings { get; private set; }
         public Armor ?Boots { get; private set; }
-        public bool AddItem(int maxWeight, Item item)
+        public int MaxWeight { get; private set; } = 40;
+        public bool AddItem(Item item)
         {
             int weight = GetCurrentWeight();
-            if (maxWeight < weight + item.Weight) return false;
+            if (MaxWeight < weight + item.Weight) return false;
             Items.Add(item);
             return true;
         }

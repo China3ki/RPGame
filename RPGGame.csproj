@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Gameplay\Battle\Ai\" />
     <Folder Include="Gameplay\Characters\Effects\" />
-    <Folder Include="Gameplay\Shop\" />
     <Folder Include="Saves\" />
   </ItemGroup>
 
