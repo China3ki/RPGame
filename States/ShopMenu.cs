@@ -30,23 +30,23 @@ namespace RPGGame.States
                 if (number == 3) DisplayFood();
             } while (number != 5);
         }
-        public void DisplayFood()
+        public void DisplayFood<T>() where T : Item
         {
-            List<Food> foodList = ShopManager.FoodList;
+            List<T> list = ShopManager.ReturnList<T>();
             Console.Clear();
             View.RenderInfo("===== Żywność =====", ConsoleColor.White);
-            if (foodList.Count == 0)
+            if (list.Count == 0)
             {
                 View.RenderInfo("Nie ma żadnej żywności do sprzedania!", ConsoleColor.Red);
                 Thread.Sleep(2000);
                 return;
             }
             View.DisplayFoodHeaders();
-            for (int i = 0; i < foodList.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
-                View.DisplayFood(i + 1, foodList[i]);
+                View.DisplayFood(i + 1, list[i]);
             }
-            int index = BuyItem<Food>(foodList);
+            int index = BuyItem<T>(list);
             if (index != -1) ShopManager.RemoveAt(ItemCategory.Food, index);
         }
         public void DisplayWeapon()
