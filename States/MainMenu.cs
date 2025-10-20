@@ -20,8 +20,7 @@ namespace RPGGame.States
             int number;
             do
             {
-                number = InputHandler.SelectOption("Wybierz numer:", 1, 9);
-                if (number == 7) SaveManager.SaveGame(_player);
+                number = InputHandler.SelectOption("Wybierz numer:", 1, 9);               
             } while (number == 7);
             return number;
         }
@@ -30,8 +29,10 @@ namespace RPGGame.States
             int number = ChooseOption();
             switch(number)
             {
-                case 4: stateManager.PushState(new ShopMenu(_player)); break;
-                case 6: stateManager.PushState(new CharacterMenu(_player)); break;               
+                case 2: stateManager.PushState(new InventoryMenu(_player.Inventory)); break;
+                case 4: stateManager.PushState(new ShopMenu(_player.Inventory)); break;
+                case 6: stateManager.PushState(new CharacterMenu(_player)); break;
+                case 7: SaveManager.SaveGame(_player); break;
                 case 8: stateManager.PushState(new LoadGame()); break;
                 case 9:
                     SaveManager.SaveGame(_player);

@@ -1,6 +1,4 @@
 ﻿using RPGGame.Components;
-using RPGGame.Gameplay.Characters;
-using RPGGame.Gameplay.Characters.Entities;
 namespace RPGGame
 {
     internal class Program
@@ -9,7 +7,6 @@ namespace RPGGame
         {
             StateManager stateManager = new();
             stateManager.RunApp();
-
         }
     }
 }

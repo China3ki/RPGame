@@ -1,7 +1,7 @@
 ﻿using RPGGame.Gameplay.Items;
 namespace RPGGame.Gameplay.Characters.Entities
 {
-    internal class Inventory
+    internal class Inventory(int coins)
     {
         public List<Item> Items { get; private set; } = [];
         public Weapon ?PrimaryWeapon { get; private set; }
@@ -10,7 +10,9 @@ namespace RPGGame.Gameplay.Characters.Entities
         public Armor ?Chestplate { get; private set; }
         public Armor ?Leggings { get; private set; }
         public Armor ?Boots { get; private set; }
+        public int Coins { get; private set; } = coins;
         public int MaxWeight { get; private set; } = 40;
+        public void RemoveCoins(int points) => Coins -= points;
         public bool AddItem(Item item)
         {
             int weight = GetCurrentWeight();

@@ -5,10 +5,10 @@
     "Durability": 100,
     "Rarity": "uncommon",
     "ItemCategory": "Potion",
-    "Price": 20,
+    "Price": 30,
     "ItemId": 1,
-    "Value": 5,
-    "Duration": 2,
+    "Value": 10,
+    "Duration": 5,
     "EffectType": "HPRegeneration"
   },
   {
@@ -17,9 +17,9 @@
     "Durability": 100,
     "Rarity": "common",
     "ItemCategory": "Potion",
-    "Price": 15,
+    "Price": 20,
     "ItemId": 2,
-    "Value": 3,
+    "Value": 1,
     "Duration": 1,
     "EffectType": "ClearNegativeEffects"
   },
@@ -29,10 +29,10 @@
     "Durability": 100,
     "Rarity": "rare",
     "ItemCategory": "Potion",
-    "Price": 30,
+    "Price": 25,
     "ItemId": 3,
-    "Value": 6,
-    "Duration": 3,
+    "Value": 5,
+    "Duration": 5,
     "EffectType": "FireProtection"
   },
   {
@@ -41,22 +41,22 @@
     "Durability": 100,
     "Rarity": "rare",
     "ItemCategory": "Potion",
-    "Price": 30,
+    "Price": 25,
     "ItemId": 4,
-    "Value": 6,
-    "Duration": 3,
+    "Value": 5,
+    "Duration": 5,
     "EffectType": "ColdProtection"
   },
   {
     "Name": "Mikstura cienia",
     "Weight": 1,
     "Durability": 100,
-    "Rarity": "epic",
+    "Rarity": "rare",
     "ItemCategory": "Potion",
-    "Price": 50,
+    "Price": 25,
     "ItemId": 5,
-    "Value": 10,
-    "Duration": 4,
+    "Value": 5,
+    "Duration": 5,
     "EffectType": "DarkProtection"
   },
   {
@@ -65,23 +65,11 @@
     "Durability": 100,
     "Rarity": "rare",
     "ItemCategory": "Potion",
-    "Price": 25,
+    "Price": 40,
     "ItemId": 6,
-    "Value": 8,
-    "Duration": 3,
+    "Value": 30,
+    "Duration": 8,
     "EffectType": "HPRegeneration"
-  },
-  {
-    "Name": "Mikstura oczyszczenia +",
-    "Weight": 1,
-    "Durability": 100,
-    "Rarity": "uncommon",
-    "ItemCategory": "Potion",
-    "Price": 20,
-    "ItemId": 7,
-    "Value": 5,
-    "Duration": 2,
-    "EffectType": "ClearNegativeEffects"
   },
   {
     "Name": "Mikstura ognista +",
@@ -91,8 +79,8 @@
     "ItemCategory": "Potion",
     "Price": 60,
     "ItemId": 8,
-    "Value": 12,
-    "Duration": 5,
+    "Value": 10,
+    "Duration": 8,
     "EffectType": "FireProtection"
   },
   {
@@ -103,8 +91,8 @@
     "ItemCategory": "Potion",
     "Price": 60,
     "ItemId": 9,
-    "Value": 12,
-    "Duration": 5,
+    "Value": 10,
+    "Duration": 8,
     "EffectType": "ColdProtection"
   },
   {
@@ -113,10 +101,10 @@
     "Durability": 100,
     "Rarity": "legendary",
     "ItemCategory": "Potion",
-    "Price": 80,
+    "Price": 60,
     "ItemId": 10,
-    "Value": 15,
-    "Duration": 6,
+    "Value": 10,
+    "Duration": 8,
     "EffectType": "DarkProtection"
   }
 ]

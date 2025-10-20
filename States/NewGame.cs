@@ -22,7 +22,7 @@ namespace RPGGame.States
             View.RenderCreatePlayerInfo();
             skills.SetFreeSkillPoints(20);
             skills.DistributeSkillPoints();
-            Player player = new(name, 100, 1, 0, 50, "", skills, new Inventory());
+            Player player = new(name, 100, 1, 0, "", skills, new Inventory(50));
             player.GeneratePlayerId();
             return player;
         }

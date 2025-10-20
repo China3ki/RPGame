@@ -2,19 +2,21 @@
 using RPGGame.Components.Gui;
 using RPGGame.Components.InputHandlers;
 using RPGGame.Components.Interfaces;
+using RPGGame.Components.Managers;
 using RPGGame.Gameplay.Characters;
+using RPGGame.Gameplay.Characters.Entities;
 using RPGGame.Gameplay.Items;
 using RPGGame.Gameplay.Shop;
 using System.Diagnostics;
 
 namespace RPGGame.States
 {
-    internal class ShopMenu(Player player) : IGameState
+    internal class ShopMenu(Inventory player) : IGameState
     {
-        private Player _player = player;
+        private Inventory _inventory = player;
+        private EquipmentManager _equipmentManager = new("W tym dziale nie mamy nic do sprzedania! Odwiedż nas póżniej!");
         public void InitState()
         {
-            Console.Clear();
             Shop();
         }
         public void Shop()
@@ -27,54 +29,54 @@ namespace RPGGame.States
                 View.RenderMenu(["Bronie", "Zbroje", "Owoce", "Mikstury", "Wyjdż"]);
                 number = InputHandler.SelectOption("Wybierz numer:", 1, 5);
                 if (number == 1) DisplayWeapon();
+                if (number == 2) DisplayArmor();
                 if (number == 3) DisplayFood();
+                if (number == 4) DisplayPotion();
             } while (number != 5);
-        }
-        public void DisplayFood<T>() where T : Item
-        {
-            List<T> list = ShopManager.ReturnList<T>();
-            Console.Clear();
-            View.RenderInfo("===== Żywność =====", ConsoleColor.White);
-            if (list.Count == 0)
-            {
-                View.RenderInfo("Nie ma żadnej żywności do sprzedania!", ConsoleColor.Red);
-                Thread.Sleep(2000);
-                return;
-            }
-            View.DisplayFoodHeaders();
-            for (int i = 0; i < list.Count; i++)
-            {
-                View.DisplayFood(i + 1, list[i]);
-            }
-            int index = BuyItem<T>(list);
-            if (index != -1) ShopManager.RemoveAt(ItemCategory.Food, index);
         }
         public void DisplayWeapon()
         {
             List<Weapon> weaponList = ShopManager.WeaponList;
             Console.Clear();
             View.RenderInfo("===== Bronie ======", ConsoleColor.White);
-            if (weaponList.Count == 0)
-            {
-                View.RenderInfo("Nie ma żadnej broni do sprzedania!", ConsoleColor.Red);
-                Thread.Sleep(2000);
-                return;
-            }
-            View.DisplayWeaponHeaders();
-            for (int i = 0; i < weaponList.Count; i++)
-            {
-                View.DisplayWeapon(i + 1, weaponList[i]);
-            }
+            if (!_equipmentManager.Display<Weapon>(weaponList, ItemCategory.Weapon)) return;
             int index = BuyItem<Weapon>(weaponList);
             if (index != -1) ShopManager.RemoveAt(ItemCategory.Weapon, index);
         }
+        public void DisplayPotion()
+        {
+            List<Potion> potionList = ShopManager.PotionList;
+            Console.Clear();
+            View.RenderInfo("===== Mikstury =====", ConsoleColor.White);
+            if (!_equipmentManager.Display<Potion>(potionList, ItemCategory.Potion)) return;
+            int index = BuyItem<Potion>(potionList);
+            if (index != -1) ShopManager.RemoveAt(ItemCategory.Potion, index);
+        }
+        public void DisplayFood()
+        {
+            List<Food> foodList = ShopManager.FoodList;
+            Console.Clear();
+            View.RenderInfo("===== Żywność =====", ConsoleColor.White);
+            if(!_equipmentManager.Display<Food>(foodList, ItemCategory.Food)) return;
+            int index = BuyItem<Food>(foodList);
+            if (index != -1) ShopManager.RemoveAt(ItemCategory.Food, index);
+        }
+        public void DisplayArmor()
+        {
+            List<Armor> armorList = ShopManager.ArmorList;
+            Console.Clear();
+            View.RenderInfo("===== Uzbrojenie =====", ConsoleColor.White);
+            if (!_equipmentManager.Display<Armor>(armorList, ItemCategory.Armor)) return;
+            int index = BuyItem<Armor>(armorList);
+            if (index != -1) ShopManager.RemoveAt(ItemCategory.Armor, index);
+        }
         public int BuyItem<T>(List<T> list) where T : Item
         {
-            int coins = _player.Coins;
+            int coins = _inventory.Coins;
             int number;
             View.RenderInfo("Wybierz przedmiot który chcesz zakupić lub wybierz 0 aby wrócić", ConsoleColor.Yellow);
             View.RenderInfo($"Pieniądze: {coins} ", ConsoleColor.White);
-            View.RenderInfo($"Waga: {_player.Inventory.GetCurrentWeight()}/{_player.Inventory.MaxWeight}", ConsoleColor.White);
+            View.RenderInfo($"Waga: {_inventory.GetCurrentWeight()}/{_inventory.MaxWeight}", ConsoleColor.White);
             do
             {
                 number = InputHandler.SelectOption("Wybierz przedmiot:", 0, list.Count);
@@ -84,17 +86,16 @@ namespace RPGGame.States
                 {
                     View.RenderInfo("Masz za mało pieniędzy!", ConsoleColor.Red); continue;
                 }
-                if (_player.Inventory.AddItem(item))
+                if (_inventory.AddItem(item))
                 {
-                    _player.RemoveCoins(item.ReturnPrice());
+                    _inventory.RemoveCoins(item.ReturnPrice());
                     View.RenderInfo($"Przedmiot ({item.Name}) został kupiony", ConsoleColor.Green);
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
                     break;
                 }
                 else
                 {
                     View.RenderInfo("Nie jesteś wystarczająco silny aby dżwigać tyle przedmiotów!", ConsoleColor.Red);
-                    continue;
                 }
             } while (number != 0);
             return number - 1;

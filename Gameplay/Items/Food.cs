@@ -17,10 +17,10 @@
         public override int ReturnPrice()
         {
             float mulitply = 1;
-            if (mulitply < 85 && mulitply >= 70) mulitply = .8f;
-            else if (mulitply < 70 && mulitply >= 50) mulitply = .6f;
-            else if (mulitply < 50 && mulitply >= 30) mulitply = .4f;
-            else mulitply = .2f;
+            if (Durability < 85 && Durability >= 70) mulitply = .8f;
+            else if (Durability < 70 && Durability >= 50) mulitply = .6f;
+            else if (Durability < 50 && Durability >= 30) mulitply = .4f;
+            else if (Durability < 30) mulitply = .2f;
             return Convert.ToInt32(base.ReturnPrice() * mulitply);
         }
     }
