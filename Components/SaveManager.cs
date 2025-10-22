@@ -10,7 +10,12 @@ namespace RPGGame.Components
         {
             string savePath = $"{_path}/{player.SavePath}.json";
             if (!File.Exists(savePath)) File.Create(savePath).Dispose();
-            var save = JsonConvert.SerializeObject(player);
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                Formatting = Formatting.Indented
+            };
+            var save = JsonConvert.SerializeObject(player, settings);
             File.WriteAllText(savePath, save);
             View.RenderInfo("Gra została zapisana!", ConsoleColor.Green);
             Thread.Sleep(500);
@@ -19,7 +24,12 @@ namespace RPGGame.Components
         {
             string[] files = Directory.GetFiles(_path);
             string json = File.ReadAllText(files[index]);
-            var deserialize = JsonConvert.DeserializeObject<Player>(json);
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                Formatting = Formatting.Indented
+            };
+            var deserialize = JsonConvert.DeserializeObject<Player>(json, settings);
             if (deserialize != null) return deserialize;
             else throw new InvalidOperationException("File does not found!");
         }

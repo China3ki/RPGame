@@ -1,0 +1,55 @@
+{
+  "$type": "RPGGame.Gameplay.Characters.Player, RPGGame",
+  "XP": 0,
+  "SavePath": "save067160",
+  "Name": "dssfs",
+  "HP": 100,
+  "Level": 1,
+  "Skills": {
+    "$type": "RPGGame.Gameplay.Characters.Entities.Skills, RPGGame",
+    "FreeSkillPoints": 10,
+    "Strength": 4,
+    "Luck": 4,
+    "Reflex": 4,
+    "Magic": 4,
+    "FireSkill": 4,
+    "ColdSkill": 4,
+    "DarkSkill": 4,
+    "SwordSkill": 4,
+    "WandSkill": 4,
+    "BowSkill": 4
+  },
+  "Inventory": {
+    "$type": "RPGGame.Gameplay.Characters.Entities.Inventory, RPGGame",
+    "Items": {
+      "$type": "System.Collections.Generic.List`1[[RPGGame.Gameplay.Items.Item, RPGGame]], System.Private.CoreLib",
+      "$values": [
+        {
+          "$type": "RPGGame.Gameplay.Items.Weapon, RPGGame",
+          "Value": 4,
+          "Level": 0,
+          "Equipped": true,
+          "RequiredSkillType": 0,
+          "EffectType": 0,
+          "WeaponType": 2,
+          "Name": "Łuk Myśliwego",
+          "Weight": 3,
+          "Durability": 100,
+          "Rarity": 0,
+          "ItemCategory": 2
+        }
+      ]
+    },
+    "PrimaryWeapon": 0,
+    "SecondaryWeapon": -1,
+    "Helmet": -1,
+    "Chestplate": -1,
+    "Leggings": -1,
+    "Boots": -1,
+    "Coins": 35,
+    "MaxWeight": 40
+  },
+  "DamageManger": {
+    "$type": "RPGGame.Gameplay.Characters.Managers.DamageManager, RPGGame"
+  }
+}

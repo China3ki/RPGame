@@ -11,40 +11,42 @@ namespace RPGGame.Components.Gui
             DisplayEquippedHeaders();
             // Główna broń
             View.RenderInfoSameLine("Główna broń: ", ConsoleColor.White);
-            DisplayWeapon(primaryWeapon);
+            DisplayItem(primaryWeapon);
             // Druga broń
             View.RenderInfoSameLine("Druga broń: ", ConsoleColor.White);
-            DisplayWeapon(secondaryWeapon);
+            DisplayItem(secondaryWeapon);
             // Hełm
             View.RenderInfoSameLine("Hełm: ", ConsoleColor.White);
-            DisplayWeapon(helmet);
+            DisplayItem(helmet);
             // Napierśnik
             View.RenderInfoSameLine("Napierśnik: ", ConsoleColor.White);
-            DisplayWeapon(chestplate);
+            DisplayItem(chestplate);
             // Nogawice
             View.RenderInfoSameLine("Nogawice: ", ConsoleColor.White);
-            DisplayWeapon(leggings);
+            DisplayItem(leggings);
             // Buty
             View.RenderInfoSameLine("Buty: ", ConsoleColor.White);
-            DisplayWeapon(boots);
+            DisplayItem(boots);
             View.RenderInfo($"Całkowita Ochrona: {defenceValue}", ConsoleColor.White);
             View.RenderInfo($"Waga: {weight}/{maxWeight}", ConsoleColor.White);
             View.RenderInfo($"Pieniądze: {coins}", ConsoleColor.White);
             View.RenderInfo("=====================", ConsoleColor.Cyan);
         }
-        private void DisplayWeapon(Item ?item)
+        private void DisplayItem(Item ?item)
         {
             if (item == null) View.RenderInfoSameLine("Brak \n", ConsoleColor.Red);
             else
             {
                 View.RenderInfoSameLine(item.Name, ConsoleColor.Magenta); Console.Write(" | ");
-                if(item is Weapon weapon) View.RenderInfoSameLine($"{weapon.WeaponType}", ConsoleColor.DarkBlue); Console.Write(" | ");
-                if(item is Armor armor) View.RenderInfoSameLine($"{armor.ArmorType}", ConsoleColor.DarkBlue); Console.Write(" | ");
+                if(item is Weapon weapon) View.RenderInfoSameLine($"{weapon.WeaponType}", ConsoleColor.DarkBlue);
+                if(item is Armor armor) View.RenderInfoSameLine($"{armor.ArmorType}", ConsoleColor.DarkBlue);
+                Console.Write(" | ");
                 View.RenderInfoSameLine($"{item.Durability}", ConsoleColor.DarkGreen); Console.Write(" | ");
                 View.RenderInfoSameLine($"{item.Weight}", ConsoleColor.DarkCyan); Console.Write(" | ");
                 View.RenderInfoSameLine($"{item.Rarity}", ConsoleColor.Yellow); Console.Write(" | ");
-                if(item is Weapon weapon1) View.RenderInfoSameLine($"{weapon1.Value}", ConsoleColor.Blue); Console.Write(" | \n");
-                if(item is Armor armor1) View.RenderInfoSameLine($"{armor1.Value}", ConsoleColor.Blue); Console.Write(" | \n");
+                if(item is Weapon weapon1) View.RenderInfoSameLine($"{weapon1.Value}", ConsoleColor.Blue);
+                if(item is Armor armor1) View.RenderInfoSameLine($"{armor1.Value}", ConsoleColor.Blue);
+                Console.Write(" | \n");
             }
         }
         private void DisplayEquippedHeaders()

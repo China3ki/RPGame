@@ -2,11 +2,11 @@
 
 namespace RPGGame.Gameplay.Items
 {
-    class Weapon(string name, int price, int weight, int itemId, int durability, int value, int minWeaponLevel, SkillsCategory requiredSkillType, EffectType effectType, WeaponType weaponType, Rarity rarity, ItemCategory itemCategory) : Item(name, price, weight, durability, itemId, rarity, itemCategory), IEquip
+    class Weapon(string name, int price, int weight, int itemId, int durability, bool equipped, int value, int minWeaponLevel, SkillsCategory requiredSkillType, EffectType effectType, WeaponType weaponType, Rarity rarity, ItemCategory itemCategory) : Item(name, price, weight, durability, itemId, rarity, itemCategory), IEquip
     {
         public int Value { get; } = value;
         public int Level { get; } = minWeaponLevel;
-        public bool Equipped { get; private set; } = false;
+        public bool Equipped { get; private set; } = equipped;
         public SkillsCategory RequiredSkillType { get; } = requiredSkillType;
         public EffectType EffectType { get; } = effectType;
         public WeaponType WeaponType { get; } = weaponType;

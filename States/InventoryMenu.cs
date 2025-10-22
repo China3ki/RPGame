@@ -6,6 +6,7 @@ using RPGGame.Components.Managers;
 using RPGGame.Gameplay.Characters;
 using RPGGame.Gameplay.Characters.Entities;
 using RPGGame.Gameplay.Items;
+using System.Diagnostics;
 
 namespace RPGGame.States
 {
@@ -20,16 +21,16 @@ namespace RPGGame.States
         }
         public void Inventory()
         {
-            Weapon ?primaryWeapon = _inventory.PrimaryWeapon;
-            Weapon ?secondaryWeapon = _inventory.SecondaryWeapon;
-            Armor ?helmet = _inventory.Helmet;
-            Armor ?chestplate = _inventory.Chestplate;
-            Armor ?leggings = _inventory.Leggings;
-            Armor ?boots = _inventory.Boots;
-            int defenceValue = GetDefenceValue(helmet, chestplate, leggings, boots);
             int number = 0;
             do
             {
+                Weapon? primaryWeapon = _inventory.PrimaryWeapon == -1 ? null : _inventory.GetItem<Weapon>(_inventory.PrimaryWeapon);
+                Weapon? secondaryWeapon = _inventory.SecondaryWeapon == -1 ? null : _inventory.GetItem<Weapon>(_inventory.SecondaryWeapon);
+                Armor? helmet = _inventory.Helmet == -1 ? null : _inventory.GetItem<Armor>(_inventory.Helmet);
+                Armor? chestplate = _inventory.Chestplate == -1 ? null : _inventory.GetItem<Armor>(_inventory.Chestplate);
+                Armor? leggings = _inventory.Leggings == -1 ? null : _inventory.GetItem<Armor>(_inventory.Leggings);
+                Armor? boots = _inventory.Boots == -1 ? null : _inventory.GetItem<Armor>(_inventory.Boots);
+                int defenceValue = GetDefenceValue(helmet, chestplate, leggings, boots);
                 Console.Clear();
                 _view.DisplayEquipped(primaryWeapon, secondaryWeapon, helmet, chestplate, leggings, boots, defenceValue, _inventory.GetCurrentWeight(), _inventory.MaxWeight, _inventory.Coins);
                 View.RenderMenu(["Bronie", "Zbroje", "Żywność", "Mikstury", "Inne", "Wyjdż"]);
@@ -66,6 +67,7 @@ namespace RPGGame.States
                     if (decision == 3) continue;
                     WeaponSlot slot = decision == 1 ? WeaponSlot.PrimaryWeapon : WeaponSlot.SecondaryWeapon;
                     _inventory.EquipWeapon(index, slot);
+                    break;
                 }
                 else if (number == 2)
                 {
@@ -90,7 +92,7 @@ namespace RPGGame.States
         }
         public void Update(StateManager stateManager)
         {
-
+            stateManager.PopState();
         }
     }
 }

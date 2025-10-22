@@ -1,15 +1,21 @@
-﻿using RPGGame.Gameplay.Items;
+﻿using Newtonsoft.Json;
+using RPGGame.Gameplay.Items;
+using System.Diagnostics;
+using System.Text.Json.Serialization;
 namespace RPGGame.Gameplay.Characters.Entities
 {
     internal class Inventory(int coins)
     {
+        [JsonProperty("Items")]
         public List<Item> Items { get; private set; } = [];
-        public Weapon ?PrimaryWeapon { get; private set; }
-        public Weapon ?SecondaryWeapon { get; private set; }
-        public Armor ?Helmet { get; private set; }
-        public Armor ?Chestplate { get; private set; }
-        public Armor ?Leggings { get; private set; }
-        public Armor ?Boots { get; private set; }
+        [JsonProperty("PrimaryWeapon")]
+        public int PrimaryWeapon { get; private set; } = -1;
+        [JsonProperty("SecondaryWeapon")]
+        public int SecondaryWeapon { get; private set; } = -1;
+        public int Helmet { get; private set; } = -1;
+        public int Chestplate { get; private set; } = -1;
+        public int Leggings { get; private set; } = -1;
+        public int Boots { get; private set; } = -1;
         public int Coins { get; private set; } = coins;
         public int MaxWeight { get; private set; } = 40;
         public void RemoveCoins(int points) => Coins -= points;
@@ -24,13 +30,12 @@ namespace RPGGame.Gameplay.Characters.Entities
         {
             List<Item> itemList = GetItems(itemCategory);
             if (itemIndex >= itemList.Count || itemIndex < 0) return false;
-            Item item = itemList[itemIndex];
-            if (PrimaryWeapon == item) DeEquip(Slots.PrimaryWeapon);
-            if (SecondaryWeapon == item) DeEquip(Slots.SecondaryWeapon);
-            if (Helmet == item) DeEquip(Slots.Helmet);
-            if (Chestplate == item) DeEquip(Slots.Chestplate);
-            if (Leggings == item) DeEquip(Slots.Leggings);
-            if (Boots == item) DeEquip(Slots.Boots);
+            if (PrimaryWeapon == itemIndex && itemCategory == ItemCategory.Weapon) DeEquip(Slots.PrimaryWeapon);
+            if (SecondaryWeapon == itemIndex && itemCategory == ItemCategory.Weapon) DeEquip(Slots.SecondaryWeapon);
+            if (Helmet == itemIndex && itemCategory == ItemCategory.Armor) DeEquip(Slots.Helmet);
+            if (Chestplate == itemIndex && itemCategory == ItemCategory.Armor) DeEquip(Slots.Chestplate);
+            if (Leggings == itemIndex && itemCategory == ItemCategory.Armor) DeEquip(Slots.Leggings);
+            if (Boots == itemIndex && itemCategory == ItemCategory.Armor) DeEquip(Slots.Boots);
             int findIndex = Items.IndexOf(itemList[itemIndex]);
             Items.RemoveAt(findIndex);
             return true;
@@ -39,78 +44,79 @@ namespace RPGGame.Gameplay.Characters.Entities
         {
             List<Armor> armorList = GetTypeOfItems<Armor>();
             if (itemIndex >= armorList.Count || itemIndex < 0) return false;
-            Armor armor = armorList[itemIndex];
-            switch(armor.ArmorType)
+            switch (armorList[itemIndex].ArmorType)
             {
                 case ArmorType.Helmet:
                     DeEquip(Slots.Helmet);
-                    Helmet = armor;
+                    Helmet = itemIndex;
                     break;
                 case ArmorType.Chestplate:
                     DeEquip(Slots.Chestplate);
-                    Chestplate = armor;
+                    Chestplate = itemIndex;
                     break;
                 case ArmorType.Leggings:
                     DeEquip(Slots.Leggings);
-                    Leggings = armor;
+                    Leggings = itemIndex;
                     break;
                 case ArmorType.Boots:
                     DeEquip(Slots.Boots);
-                    Boots = armor;
+                    Boots = itemIndex;
                     break;
             }
-            armor.HandleEquip();
+            armorList[itemIndex].HandleEquip();
             return true;
         }
         public bool EquipWeapon(int itemIndex, WeaponSlot weaponSlot)
         {
             List<Weapon> weaponList = GetTypeOfItems<Weapon>();
             if (itemIndex >= weaponList.Count || itemIndex < 0) return false;
-            Weapon weapon = weaponList[itemIndex];
             switch(weaponSlot)
             {
                 case WeaponSlot.PrimaryWeapon:
                     DeEquip(Slots.PrimaryWeapon);
-                    PrimaryWeapon = weapon;
+                    PrimaryWeapon = itemIndex;
                     break;
                 case WeaponSlot.SecondaryWeapon:
                     DeEquip(Slots.SecondaryWeapon);
-                    SecondaryWeapon = weapon;
+                    SecondaryWeapon = itemIndex;
                     break;
             }
-            weapon.HandleEquip();
+            weaponList[itemIndex].HandleEquip();
             return true;
         }
         public void DeEquip(Slots slot)
         {
-            switch(slot)
+            List<Weapon> weaponList = GetTypeOfItems<Weapon>();
+            List<Armor> armorList = GetTypeOfItems<Armor>();
+            switch (slot)
             {
                 case Slots.PrimaryWeapon:
-                    if (PrimaryWeapon != null) PrimaryWeapon.HandleEquip();
-                    PrimaryWeapon = null;
+                    if (PrimaryWeapon != -1) weaponList[PrimaryWeapon].HandleEquip();
+                    PrimaryWeapon = -1;
                     break;
                 case Slots.SecondaryWeapon:
-                    if (SecondaryWeapon != null) SecondaryWeapon.HandleEquip();
-                    SecondaryWeapon = null;
+                    if (SecondaryWeapon != -1) weaponList[SecondaryWeapon].HandleEquip();
+                    SecondaryWeapon = -1;
                     break;
                 case Slots.Helmet:
-                    if (Helmet != null) Helmet.HandleEquip();
-                    Helmet = null;
+                    if (Helmet != -1) armorList[Helmet].HandleEquip();
+                    Helmet = -1;
                     break;
                 case Slots.Chestplate:
-                    if (Chestplate != null) Chestplate.HandleEquip();
-                    Chestplate = null;
+                    if (Chestplate != -1) armorList[Chestplate].HandleEquip();
+                    Chestplate = -1;
                     break;
                 case Slots.Leggings:
-                    if (Leggings != null) Leggings.HandleEquip();
-                    Leggings = null;
+                    if (Leggings != -1) armorList[Leggings].HandleEquip();
+                    Leggings = -1;
                     break;
                 case Slots.Boots:
-                    if (Boots != null) Boots.HandleEquip();
-                    Boots = null;
+                    if (Boots != -1) armorList[Boots].HandleEquip();
+                    Boots = -1;
                     break;
             }
         }
+        public T GetItem<T>(int index) => Items.OfType<T>().ToList()[index]; 
         public List<Item> GetItems(ItemCategory itemCategogry) => Items.Where(item => item.ItemCategory == itemCategogry).Select(item => item).ToList(); 
         public List<T> GetTypeOfItems<T>() => Items.OfType<T>().ToList();
         public int GetCurrentWeight() => Items.Sum(item => item.Weight);
