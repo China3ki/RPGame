@@ -11,7 +11,8 @@ namespace RPGGame.Gameplay.Items
         public ItemCategory ItemCategory { get; } = itemCategory;
         protected Dictionary<Rarity, float> _priceMultiply = new() { { Rarity.Common, 1 }, { Rarity.Uncommon, 1.5f }, { Rarity.Rare, 2.5f }, { Rarity.Epic, 3.5f }, { Rarity.Legendary, 4f } };
         protected int _price = price;
-        protected int _itemId = itemId;
+        private int ItemId = itemId;
+
         /// <summary>
         /// Calculates and returns the price of the item based on its rarity and a predefined multiplier.
         /// </summary>

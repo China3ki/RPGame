@@ -1,9 +1,9 @@
 {
   "$type": "RPGGame.Gameplay.Characters.Player, RPGGame",
   "XP": 0,
-  "SavePath": "save067160",
-  "Name": "dssfs",
-  "HP": 100,
+  "SavePath": "save822006",
+  "Name": "asd",
+  "HP": 50,
   "Level": 1,
   "Skills": {
     "$type": "RPGGame.Gameplay.Characters.Entities.Skills, RPGGame",
@@ -25,28 +25,58 @@
       "$type": "System.Collections.Generic.List`1[[RPGGame.Gameplay.Items.Item, RPGGame]], System.Private.CoreLib",
       "$values": [
         {
+          "$type": "RPGGame.Gameplay.Items.Food, RPGGame",
+          "Value": 15,
+          "Name": "Grzyby leśne",
+          "Weight": 1,
+          "Durability": 100,
+          "Rarity": 1,
+          "ItemCategory": 1
+        },
+        {
+          "$type": "RPGGame.Gameplay.Items.Food, RPGGame",
+          "Value": 5,
+          "Name": "Orzechy",
+          "Weight": 1,
+          "Durability": 100,
+          "Rarity": 0,
+          "ItemCategory": 1
+        },
+        {
           "$type": "RPGGame.Gameplay.Items.Weapon, RPGGame",
-          "Value": 4,
+          "Value": 3,
           "Level": 0,
-          "Equipped": true,
+          "Equipped": false,
           "RequiredSkillType": 0,
           "EffectType": 0,
-          "WeaponType": 2,
-          "Name": "Łuk Myśliwego",
-          "Weight": 3,
+          "WeaponType": 0,
+          "Name": "Drewniany miecz",
+          "Weight": 5,
           "Durability": 100,
           "Rarity": 0,
           "ItemCategory": 2
+        },
+        {
+          "$type": "RPGGame.Gameplay.Items.Armor, RPGGame",
+          "Value": 1,
+          "Level": 0,
+          "Equipped": false,
+          "ArmorType": 1,
+          "Name": "Lniana tunika",
+          "Weight": 3,
+          "Durability": 100,
+          "Rarity": 0,
+          "ItemCategory": 3
         }
       ]
     },
-    "PrimaryWeapon": 0,
+    "PrimaryWeapon": -1,
     "SecondaryWeapon": -1,
     "Helmet": -1,
     "Chestplate": -1,
     "Leggings": -1,
     "Boots": -1,
-    "Coins": 35,
+    "Coins": 5,
     "MaxWeight": 40
   },
   "DamageManger": {

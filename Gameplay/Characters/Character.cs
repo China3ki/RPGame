@@ -11,5 +11,10 @@ namespace RPGGame.Gameplay.Characters
         public Skills Skills { get; private set; } = skills;
         public Inventory Inventory { get; private set; } = inventory;
         public DamageManager DamageManger { get; private set; } = new();
+        public void AddHP(int HPPoints)
+        {
+            if (HP + HPPoints > 100) HP = 100;
+            else HP += HPPoints;
+        }
     }
 }

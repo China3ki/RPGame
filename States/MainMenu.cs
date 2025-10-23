@@ -29,7 +29,7 @@ namespace RPGGame.States
             int number = ChooseOption();
             switch(number)
             {
-                case 2: stateManager.PushState(new InventoryMenu(_player.Inventory)); break;
+                case 2: stateManager.PushState(new InventoryMenu(_player)); break;
                 case 4: stateManager.PushState(new ShopMenu(_player.Inventory)); break;
                 case 6: stateManager.PushState(new CharacterMenu(_player)); break;
                 case 7: SaveManager.SaveGame(_player); break;

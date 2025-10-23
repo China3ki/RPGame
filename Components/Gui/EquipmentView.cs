@@ -1,9 +1,29 @@
 ﻿using RPGGame.Gameplay.Items;
+using System;
 
 namespace RPGGame.Components.Gui
 {
     internal class EquipmentView
     {
+        public void DisplayItemHeaders()
+        {
+            Console.Write("| ");
+            View.RenderInfoSameLine("Lp", ConsoleColor.White); Console.Write(" | ");
+            View.RenderInfoSameLine("Nazwa", ConsoleColor.Magenta); Console.Write(" | ");
+            View.RenderInfoSameLine("Trwałość", ConsoleColor.DarkGreen); Console.Write(" | ");
+            View.RenderInfoSameLine("Waga", ConsoleColor.DarkCyan); Console.Write(" | ");
+            View.RenderInfoSameLine("Rzadkość", ConsoleColor.Yellow); Console.Write(" | ");
+            View.RenderInfoSameLine("Cena", ConsoleColor.DarkGray); Console.Write(" |\n");
+        }
+        public void DisplayItem(int lp, Item item)
+        {
+            View.RenderInfoSameLine($"{lp}", ConsoleColor.White); Console.Write(" | ");
+            View.RenderInfoSameLine(item.Name, ConsoleColor.Magenta); Console.Write(" | ");
+            View.RenderInfoSameLine($"{item.Durability}", ConsoleColor.DarkGreen); Console.Write(" | ");
+            View.RenderInfoSameLine($"{item.Weight}", ConsoleColor.DarkCyan); Console.Write(" | ");
+            View.RenderInfoSameLine($"{item.Rarity}", ConsoleColor.Yellow); Console.Write(" | ");
+            View.RenderInfoSameLine($"{item.ReturnPrice()}", ConsoleColor.DarkGray); Console.Write(" |\n");
+        }
         public void DisplayPotionHeaders()
         {
             Console.Write("| ");

@@ -19,9 +19,10 @@ namespace RPGGame.Components.Managers
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i] is Food food) _view.DisplayFood(i + 1, food);
-                if (list[i] is Weapon weapon) _view.DisplayWeapon(i + 1, weapon);
-                if (list[i] is Armor armor) _view.DisplayArmor(i + 1, armor);
-                if (list[i] is Potion potion) _view.DisplayPotion(i + 1, potion);
+                else if (list[i] is Weapon weapon) _view.DisplayWeapon(i + 1, weapon);
+                else if (list[i] is Armor armor) _view.DisplayArmor(i + 1, armor);
+                else if (list[i] is Potion potion) _view.DisplayPotion(i + 1, potion);
+                else _view.DisplayItem(i + 1, list[i]);
             }
             return true;
         }
@@ -29,6 +30,7 @@ namespace RPGGame.Components.Managers
         {
             switch (itemCategory)
             {
+                case ItemCategory.Item: _view.DisplayItemHeaders(); break;
                 case ItemCategory.Weapon: _view.DisplayWeaponHeaders(); break;
                 case ItemCategory.Armor: _view.DisplayArmorHeaders(); break;
                 case ItemCategory.Food: _view.DisplayFoodHeaders(); break;

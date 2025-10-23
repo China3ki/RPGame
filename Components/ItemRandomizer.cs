@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using RPGGame.Gameplay.Items;
-using System.Diagnostics;
-
 namespace RPGGame.Components
 {
     internal class ItemRandomizer
@@ -16,10 +14,10 @@ namespace RPGGame.Components
         public List<T>RandomizeItems<T>(ItemCategory itemCategory, int itemAmount) where T : Item
         {       
             int itemsToGenerate = _rnd.Next(1, itemAmount + 1);
-            List<T> itemList = GetItems<T>(itemCategory);
             List<T> newItemList = [];
             for(int i = 0; i < itemsToGenerate; i++)
             {
+                List<T> itemList = GetItems<T>(itemCategory);
                 int dice = _rnd.Next(0, _chance.Length - 1);
                 T ?item = Shuffle<T>(itemList, _chance[dice]);
                 if (item != null) newItemList.Add(item);

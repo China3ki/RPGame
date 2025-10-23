@@ -89,8 +89,7 @@ namespace RPGGame.States
                 if (_inventory.AddItem(item))
                 {
                     _inventory.RemoveCoins(item.ReturnPrice());
-                    View.RenderInfo($"Przedmiot ({item.Name}) został kupiony", ConsoleColor.Green);
-                    Thread.Sleep(1500);
+                    View.WaitForEnter($"Przedmiot ({item.Name}) został kupiony", ConsoleColor.Green);
                     break;
                 }
                 else

@@ -19,6 +19,16 @@ namespace RPGGame.Components.Gui
             Console.Write(info);
             Console.ResetColor();
         }
+        static public void WaitForEnter(string info, ConsoleColor font)
+        {
+            ConsoleKey key;
+            RenderInfo(info, font);
+            RenderInfo("Kliknij ENTER aby kontynuować!", ConsoleColor.Yellow);
+            do
+            {
+                key = Console.ReadKey(true).Key;
+            } while (key != ConsoleKey.Enter);
+        }
         static public void RenderCreatePlayerInfo()
         {
             RenderInfo("Przejdżmy teraz do rozdysponowania punktów!", ConsoleColor.White);
