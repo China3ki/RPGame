@@ -17,12 +17,14 @@ namespace RPGGame.Gameplay.Characters.Entities
         public int SwordSkill { get; private set; } = swordSkill;
         public int WandSkill { get; private set; } = wandSkill;
         public int BowSkill { get; private set; } = bowSkill;
+        public Dictionary<SkillsCategory, int> TempSkills { get; private set; } = new() { { SkillsCategory.FireSkill, 0 }, { SkillsCategory.ColdSkill, 0 }, { SkillsCategory.DarkSkill, 0 } };
         public void SetFreeSkillPoints(int points) => FreeSkillPoints += points;
         private int RemoveFreeSkillPoints(int points)
         {
             FreeSkillPoints -= points;
             return points;
         }
+        public int AddTempPoints(int value, SkillsCategory skillCategory) => TempSkills[skillCategory] = value;
         /// <summary>
         /// Distributes available skill points across various skill categories based on user input.
         /// </summary>

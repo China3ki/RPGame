@@ -1,14 +1,11 @@
-﻿using Newtonsoft.Json.Linq;
-using RPGGame.Components;
+﻿using RPGGame.Components;
 using RPGGame.Components.Gui;
 using RPGGame.Components.InputHandlers;
 using RPGGame.Components.Interfaces;
 using RPGGame.Components.Managers;
 using RPGGame.Gameplay.Characters;
-using RPGGame.Gameplay.Characters.Entities;
+using RPGGame.Gameplay.Characters.Abilities;
 using RPGGame.Gameplay.Items;
-using System;
-
 namespace RPGGame.States
 {
     internal class InventoryMenu(Player player) : IGameState
@@ -39,6 +36,7 @@ namespace RPGGame.States
                 if (number == 1) DisplayWeapon();
                 if (number == 2) DisplayArmor();
                 if (number == 3) DisplayFood();
+                if (number == 4) DisplayPotion();
                 if (number == 5) DisplayItems();
             } while (number != 6);
         }
@@ -47,16 +45,10 @@ namespace RPGGame.States
             do
             {
                 List<Food> foodList = _player.Inventory.GetTypeOfItems<Food>();
-                Console.Clear();
-                View.RenderInfo("===== Jedzenie =====", ConsoleColor.Cyan);
-                if (!_equipmentManager.Display(foodList, ItemCategory.Food)) break;
-                View.RenderInfo("====================", ConsoleColor.Cyan);
-                View.RenderInfo("Wybierz przedmiot lub wybierz 0 aby wrócić", ConsoleColor.Yellow);
-                int index = InputHandler.SelectOption("Wybierz przedmiot:", 0, foodList.Count);
+                int index = Display<Food>(foodList, ItemCategory.Food);
                 if (index == 0) break; ;
                 Food food = foodList[index - 1];
                 ActionFood(food.Name, index - 1, ItemCategory.Armor);
-
             } while (true);
         }
         private void DisplayArmor()
@@ -64,12 +56,7 @@ namespace RPGGame.States
             do
             {
                 List<Armor> armorList = _player.Inventory.GetTypeOfItems<Armor>();
-                Console.Clear();
-                View.RenderInfo("===== Bronie =====", ConsoleColor.Cyan);
-                if (!_equipmentManager.Display(armorList, ItemCategory.Weapon)) break;
-                View.RenderInfo("==================", ConsoleColor.Cyan);
-                View.RenderInfo("Wybierz przedmiot lub wybierz 0 aby wrócić", ConsoleColor.Yellow);
-                int index = InputHandler.SelectOption("Wybierz przedmiot:", 0, armorList.Count);
+                int index = Display<Armor>(armorList, ItemCategory.Armor);
                 if (index == 0) break; ;
                 Armor armor = armorList[index - 1];
                 Action(armor.Name, armor.Equipped, index - 1, ItemCategory.Armor);
@@ -80,12 +67,7 @@ namespace RPGGame.States
             do
             {
                 List<Weapon> weaponList = _player.Inventory.GetTypeOfItems<Weapon>();
-                Console.Clear();
-                View.RenderInfo("===== Bronie =====", ConsoleColor.Cyan);
-                if (!_equipmentManager.Display(weaponList, ItemCategory.Weapon)) break;
-                View.RenderInfo("==================", ConsoleColor.Cyan);
-                View.RenderInfo("Wybierz przedmiot lub wybierz 0 aby wrócić", ConsoleColor.Yellow);
-                int index = InputHandler.SelectOption("Wybierz przedmiot:", 0, weaponList.Count);
+                int index = Display<Weapon>(weaponList, ItemCategory.Weapon);
                 if (index == 0) break; ;
                 Weapon weapon = weaponList[index - 1];
                 Action(weapon.Name, weapon.Equipped, index - 1, ItemCategory.Weapon);
@@ -96,15 +78,71 @@ namespace RPGGame.States
             do
             {
                 List<Item> itemList = _player.Inventory.GetItems(ItemCategory.Item);
-                Console.Clear();
-                View.RenderInfo("===== Przedmioty =====", ConsoleColor.Cyan);
-                if (!_equipmentManager.Display(itemList, ItemCategory.Item)) break;
-                View.RenderInfo("======================", ConsoleColor.Cyan);
-                View.RenderInfo("Wybierz przedmiot do usunięcia lub wybierz 0 aby wrócić", ConsoleColor.Yellow);
-                int index = InputHandler.SelectOption("Wybierz przedmiot:", 0, itemList.Count);
+                int index = Display<Item>(itemList, ItemCategory.Item);
                 if (index == 0) break;
                 if (RemoveItem(index - 1, ItemCategory.Item)) break;
             } while (true);
+        }
+        private void DisplayPotion()
+        {
+            do
+            {
+                List<Potion> potionList = _player.Inventory.GetTypeOfItems<Potion>();
+                int index = Display<Potion>(potionList, ItemCategory.Potion);
+                if (index == 0) break;
+                if (ActionPotion(potionList[index - 1], index - 1, ItemCategory.Potion)) break;
+            } while (true);
+        }
+        private int Display<T>(List<T> list, ItemCategory itemCategory) where T : Item
+        {
+            Dictionary<ItemCategory, string> headers = new() { { ItemCategory.Weapon, "Bronie" }, { ItemCategory.Armor, "Zbroje" }, { ItemCategory.Food, "Żywność" }, { ItemCategory.Potion, "Potion" }, {ItemCategory.Item, "Przedmioty" } };
+            Console.Clear();
+            View.RenderInfo($"===== {headers[itemCategory]} =====", ConsoleColor.Cyan);
+            if (!_equipmentManager.Display(list, itemCategory)) return 0;
+            for(int i = 0; i < 12 + headers[itemCategory].Length; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write('=');
+                Console.ResetColor();
+            }
+            View.RenderInfo("\nWybierz przedmiot do usunięcia lub wybierz 0 aby wrócić", ConsoleColor.Yellow);
+            int index = InputHandler.SelectOption("Wybierz przedmiot:", 0, list.Count);
+            return index;
+        }
+        private bool ActionPotion(Potion potion, int index, ItemCategory itemCategory)
+        {
+            Console.Clear();
+            View.RenderMenu(["Użyj", "Usuń przedmiot", "Wróc"]);
+            int number = InputHandler.SelectOption("Wybierz numer:", 1, 3);
+            if (number == 1)
+            {
+                _player.EffectManager.AddEffect(new Effect(potion.Value, potion.Duration, potion.EffectType, EffectCategory.Positive), _player);
+                _player.Inventory.RemoveItem(index, ItemCategory.Potion);
+                return true;
+            }
+            else if (number == 2)
+            {
+                RemoveItem(index, ItemCategory.Potion);
+                return true;
+            }
+            else return false;
+        }
+        // Action for food and potion
+        private void ActionFood(string itemName, int index, ItemCategory itemCategory)
+        {
+            Food food = _player.Inventory.GetTypeOfItems<Food>()[index];
+            Console.Clear();
+            View.RenderInfo($"Wybrałeś {itemName} - +{food.Value}HP", ConsoleColor.White);
+            View.RenderInfo($"{_player.HP}/100HP", ConsoleColor.Yellow);
+            View.RenderMenu(["Użyj", "Usuń przedmiot", "Wróć"]);
+            int number = InputHandler.SelectOption("Wybierz opcję:", 1, 3);
+            if (number == 1)
+            {
+                _player.HandleHP(food.Value);
+                _player.Inventory.RemoveItem(index, ItemCategory.Food);
+                View.WaitForEnter($"Zjadłeś: {itemName}", ConsoleColor.Green);
+            }
+            else if (number == 2) { RemoveItem(index, ItemCategory.Food); }
         }
         // Action for weapons and armor.
         private void Action(string itemName, bool equipped, int index, ItemCategory itemCategory)
@@ -121,27 +159,10 @@ namespace RPGGame.States
                 if (number == 3) break;
             } while (true);
         }
-        // Action for food and potion
-        private void ActionFood(string itemName, int index, ItemCategory itemCategory)
-        {
-                Food food = _player.Inventory.GetTypeOfItems<Food>()[index];
-                Console.Clear();
-                View.RenderInfo($"Wybrałeś {itemName} - +{food.Value}HP", ConsoleColor.White);
-                View.RenderInfo($"{_player.HP}/100HP", ConsoleColor.Yellow);
-                View.RenderMenu(["Użyj", "Usuń przedmiot", "Wróć"]);
-                int number = InputHandler.SelectOption("Wybierz opcję:", 1, 3);
-                if (number == 1)
-                {
-                    _player.AddHP(food.Value);
-                    _player.Inventory.RemoveItem(index, ItemCategory.Food);
-                    View.WaitForEnter($"Zjadłeś: {itemName}", ConsoleColor.Green);
-                }
-                else if (number == 2) { RemoveItem(index, ItemCategory.Food); }
-        }
         private bool ActionArmor(string itemName, bool equipped, int index, int number)
         {
             Armor armor = _player.Inventory.GetTypeOfItems<Armor>()[index];
-            Dictionary<ArmorType, Slots> slotsDictionary = new() { { ArmorType.Helmet, Slots.Helmet }, { ArmorType.Chestplate, Slots.Chestplate }, { ArmorType.Leggings, Slots.Leggings }, { ArmorType.Boots, Slots.Leggings } };
+            Dictionary<ArmorType, Slots> slotsDictionary = new() { { ArmorType.Helmet, Slots.Helmet }, { ArmorType.Chestplate, Slots.Chestplate }, { ArmorType.Leggings, Slots.Leggings }, { ArmorType.Boots, Slots.Boots } };
             if (equipped && number == 1)
             {
                 _player.Inventory.DeEquip(slotsDictionary[armor.ArmorType]);

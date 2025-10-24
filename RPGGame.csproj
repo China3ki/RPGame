@@ -8,8 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Gameplay\Characters\Effects\**" />
+    <EmbeddedResource Remove="Gameplay\Characters\Effects\**" />
+    <None Remove="Gameplay\Characters\Effects\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Gameplay\Battle\Ai\" />
-    <Folder Include="Gameplay\Characters\Effects\" />
     <Folder Include="Saves\" />
   </ItemGroup>
 

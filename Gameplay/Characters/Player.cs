@@ -3,10 +3,11 @@ using System.Text;
 
 namespace RPGGame.Gameplay.Characters
 {
-    internal class Player(string name, int hp, int level, int xp, string savePath, Skills skills, Inventory inventory) : Character(name, hp, level, skills, inventory)
+    internal class Player(string name, int hp, int level, int xp, string savePath, Skills skills, Inventory inventory, Stats stats) : Character(name, hp, level, skills, inventory)
     {
         public int XP { get; private set; } = xp;
         public string SavePath { get; private set; } = savePath;
+        public Stats Stats { get; private set; } = stats;
         public void GeneratePlayerId()
         {
             StringBuilder saveName = new("save");

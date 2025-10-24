@@ -11,9 +11,10 @@ using System.Diagnostics;
 
 namespace RPGGame.States
 {
-    internal class ShopMenu(Inventory player) : IGameState
+    internal class ShopMenu(Inventory inventory, Stats stats) : IGameState
     {
-        private Inventory _inventory = player;
+        private Inventory _inventory = inventory;
+        private Stats _stats = stats;
         private EquipmentManager _equipmentManager = new("W tym dziale nie mamy nic do sprzedania! Odwiedż nas póżniej!");
         public void InitState()
         {
@@ -90,6 +91,8 @@ namespace RPGGame.States
                 {
                     _inventory.RemoveCoins(item.ReturnPrice());
                     View.WaitForEnter($"Przedmiot ({item.Name}) został kupiony", ConsoleColor.Green);
+                    _stats.ItemPurchased++;
+                    _stats.MoneySpent += item.ReturnPrice();
                     break;
                 }
                 else

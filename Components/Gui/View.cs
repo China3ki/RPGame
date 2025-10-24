@@ -49,6 +49,8 @@ namespace RPGGame.Components.Gui
         {
             RenderInfo("===== Informacje o graczu ======", ConsoleColor.Cyan);
             RenderInfoSameLine("Imię:", ConsoleColor.Yellow); Console.Write($"{player.Name}\n");
+            RenderInfoSameLine("Pozion:", ConsoleColor.Yellow); Console.Write($"{player.Level}\n");
+            RenderInfoSameLine("PD:", ConsoleColor.Yellow); Console.Write($"{player.XP}/100\n");
             RenderInfoSameLine("Siła:", ConsoleColor.Yellow); Console.Write($"{player.Skills.Strength}\n");
             RenderInfoSameLine("Szczęście:", ConsoleColor.Yellow); Console.Write($"{player.Skills.Luck}\n");
             RenderInfoSameLine("Refleks:", ConsoleColor.Yellow); Console.Write($"{player.Skills.Reflex}\n");

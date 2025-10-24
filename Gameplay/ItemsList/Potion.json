@@ -33,7 +33,7 @@
     "ItemId": 3,
     "Value": 5,
     "Duration": 5,
-    "EffectType": "FireProtection"
+    "EffectType": "FireSkill"
   },
   {
     "Name": "Mikstura mroźnej ochrony",
@@ -45,7 +45,7 @@
     "ItemId": 4,
     "Value": 5,
     "Duration": 5,
-    "EffectType": "ColdProtection"
+    "EffectType": "ColdSkill"
   },
   {
     "Name": "Mikstura cienia",
@@ -57,7 +57,7 @@
     "ItemId": 5,
     "Value": 5,
     "Duration": 5,
-    "EffectType": "DarkProtection"
+    "EffectType": "DarkSkill"
   },
   {
     "Name": "Mikstura lecznicza +",
@@ -81,7 +81,7 @@
     "ItemId": 8,
     "Value": 10,
     "Duration": 8,
-    "EffectType": "FireProtection"
+    "EffectType": "FireSkill"
   },
   {
     "Name": "Mikstura mroźna +",
@@ -93,7 +93,7 @@
     "ItemId": 9,
     "Value": 10,
     "Duration": 8,
-    "EffectType": "ColdProtection"
+    "EffectType": "ColdSkill"
   },
   {
     "Name": "Mikstura cienia +",
@@ -105,6 +105,6 @@
     "ItemId": 10,
     "Value": 10,
     "Duration": 8,
-    "EffectType": "DarkProtection"
+    "EffectType": "DarkSkill"
   }
 ]

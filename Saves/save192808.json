@@ -1,0 +1,78 @@
+{
+  "$type": "RPGGame.Gameplay.Characters.Player, RPGGame",
+  "XP": 0,
+  "SavePath": "save192808",
+  "Stats": {
+    "$type": "RPGGame.Gameplay.Characters.Entities.Stats, RPGGame",
+    "TurnsPlayed": 0,
+    "DamageGiven": 0,
+    "DamageTaken": 0,
+    "ItemPurchased": 0,
+    "ItemsSold": 0,
+    "MoneySpent": 0
+  },
+  "Name": "Chinaski",
+  "HP": 100,
+  "Level": 1,
+  "Skills": {
+    "$type": "RPGGame.Gameplay.Characters.Entities.Skills, RPGGame",
+    "FreeSkillPoints": 10,
+    "Strength": 4,
+    "Luck": 4,
+    "Reflex": 4,
+    "Magic": 4,
+    "FireSkill": 4,
+    "ColdSkill": 4,
+    "DarkSkill": 4,
+    "SwordSkill": 4,
+    "WandSkill": 4,
+    "BowSkill": 4,
+    "TempSkills": {
+      "$type": "System.Collections.Generic.Dictionary`2[[SkillsCategory, RPGGame],[System.Int32, System.Private.CoreLib]], System.Private.CoreLib",
+      "FireSkill": 0,
+      "ColdSkill": 0,
+      "DarkSkill": 0
+    }
+  },
+  "Inventory": {
+    "$type": "RPGGame.Gameplay.Characters.Entities.Inventory, RPGGame",
+    "Items": {
+      "$type": "System.Collections.Generic.List`1[[RPGGame.Gameplay.Items.Item, RPGGame]], System.Private.CoreLib",
+      "$values": []
+    },
+    "PrimaryWeapon": -1,
+    "SecondaryWeapon": -1,
+    "Helmet": -1,
+    "Chestplate": -1,
+    "Leggings": -1,
+    "Boots": -1,
+    "Coins": 50,
+    "MaxWeight": 40
+  },
+  "DamageManger": {
+    "$type": "RPGGame.Gameplay.Characters.Managers.DamageManager, RPGGame"
+  },
+  "EffectManager": {
+    "$type": "RPGGame.Gameplay.Characters.Managers.EffectManager, RPGGame",
+    "EffectList": {
+      "$type": "System.Collections.Generic.List`1[[RPGGame.Gameplay.Characters.Abilities.Effect, RPGGame]], System.Private.CoreLib",
+      "$values": []
+    }
+  },
+  "SpellManager": {
+    "$type": "RPGGame.Gameplay.Characters.Managers.SpellsManager, RPGGame",
+    "LearnedSpellList": {
+      "$type": "System.Collections.Generic.List`1[[RPGGame.Gameplay.Characters.Abilities.Effect, RPGGame]], System.Private.CoreLib",
+      "$values": []
+    },
+    "ActiveSpells": {
+      "$type": "RPGGame.Gameplay.Characters.Abilities.Effect[], RPGGame",
+      "$values": [
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  }
+}

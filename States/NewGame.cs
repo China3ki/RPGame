@@ -19,10 +19,11 @@ namespace RPGGame.States
             string name;
             name = InputHandler.GetString("Wpisz swoje imię:");
             Skills skills = new(3, 3, 3, 3, 3, 3, 3, 3, 3, 3);
+            Stats stats = new(0, 0, 0, 0, 0, 0);
             View.RenderCreatePlayerInfo();
             skills.SetFreeSkillPoints(20);
             skills.DistributeSkillPoints();
-            Player player = new(name, 100, 1, 0, "", skills, new Inventory(50));
+            Player player = new(name, 100, 1, 0, "", skills, new Inventory(50), stats);
             player.GeneratePlayerId();
             return player;
         }
